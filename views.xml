@@ -1,0 +1,195 @@
+<odoo>
+    <!-- VISTAS DE ARBOL -->
+
+
+    <!-- estudiantes -->
+    <record id="view_tree_estudiantes" model="ir.ui.view"> 
+        <field name="name">view.tree.estudiantes</field>
+        <field name="model">estudiantes</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre_completo"/> 
+                <field name="cedula"/>
+                <field name="codigo_id"/>           
+                 <field name="estado"/>        
+                 <field name="fecha_nacimiento"/>    
+                 <field name="est_facultad"/> 
+            </tree>
+        </field>
+    </record>
+
+    <!-- Facultades-->
+    <record id="view_tree_facultades" model="ir.ui.view"> 
+        <field name="name">view.tree.facultades</field>
+        <field name="model">facultades</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="facultad"/> 
+            </tree>
+        </field>
+    </record>
+
+    <!-- docentes -->
+    <record id="view_tree_docentes" model="ir.ui.view"> 
+        <field name="name">view.tree.docentes</field>
+        <field name="model">docentes</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre_completo"/>
+                <field name="cedula"/>
+                <field name="codigo_id"/>
+                <field name="estado"/>
+                <field name="fecha_nacimiento"/>                
+                <field name="doc_facultad"/>   
+            </tree>  
+        </field>
+    </record>
+
+
+       <!-- materias -->
+    <record id="view_tree_materias" model="ir.ui.view"> 
+        <field name="name">view.tree.materias</field>
+        <field name="model">materias</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="materia"/>
+                <field name="diasemn"/>               
+                <field name="docentes"/>
+                <field name="horario"/>                
+                <field name="mat_facultad"/>
+                
+                <field name="nota1"/>
+                <field name="nota2"/>
+                <field name="nota3"/>
+
+            </tree>  
+        </field>
+    </record>
+
+
+       <!-- matricula -->
+    <record id="view_tree_matricula" model="ir.ui.view"> 
+        <field name="name">view.tree.matricula</field>
+        <field name="model">matricula</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nom_matricula"/>       
+            </tree>  
+        </field>
+    </record>
+
+    <!-- VISTAS DE FORMULARIO -->
+
+    <!-- matricula -->
+
+ <record model="ir.ui.view" id="view_form_matricula">
+        <field name="name">view.form.matricula</field>
+        <field name="model">matricula</field>
+        <field name="arch" type="xml">
+            <form string="Matricula">
+                <sheet>               
+                <h1>Módulo de Matricula</h1>
+                    <group>
+                        <h2>Materias</h2>
+                        <field name="nom_matricula"/>
+                        <field name="matricula_materia"/>       
+                        <field name="estudiantes"/>                                                
+                    </group>              
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+ <record model="ir.ui.view" id="view_form_materias">
+        <field name="name">view.form.materias</field>
+        <field name="model">materias</field>
+        <field name="arch" type="xml">
+            <form string="Materia">
+                <sheet>    
+                <div class="alert alert-danger text-center o_form_header" role="alert" 
+                        attrs="{'invisible':[('validador_peso_total', '=', True)]}">
+                    <a class="close" data-dismiss="alert" href="#">x</a>
+                    <div>
+                        <strong>¡Advertencia!</strong>
+                    </div>
+                    <div>
+                        Recuerde que el peso total debe ser siempre 100
+                    </div>
+                    </div>           
+                <h1>Módulo de materia</h1>
+                    <group>
+                    
+                        <h2>Materias</h2>
+                        <field name="materia"/>
+                        <field name="diasemn"/>               
+                        <field name="docentes"/>
+                        <field name="horario"/>                
+                        <field name="mat_facultad"/> 
+                        <field name="validador_peso_total" invisible = "1"/>                       
+                    </group>              
+                </sheet>
+
+                <sheet>               
+                <h1>Módulo de Equivalencias</h1>
+                    <group>
+                        <h2>Materias</h2>
+                        <field name="nota1"/>
+                        <field name="nota2"/>                        
+                        <field name="nota3"/>  
+                        <field name="not_total"/>                        
+                    </group>              
+                 </sheet>
+            </form>
+        </field>
+    </record>
+
+    
+    <!-- VISTAS DE MENU -->
+
+    <record id="action_view_estudiantes" model="ir.actions.act_window"> <!--vista en el menú-->
+        <field name="name">Estudiantes</field>
+        <field name="res_model">estudiantes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+    <menuitem id="sac_estudiantes" parent="" action="SACUV.action_view_estudiantes"/>
+
+
+
+  <record id="action_view_facultades" model="ir.actions.act_window"> <!--vista en el menú-->
+        <field name="name">Facultades</field>
+        <field name="res_model">facultades</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+    <menuitem id="sac_facultades" parent="" action="SACUV.action_view_facultades"/>
+
+
+    <record id="action_view_docentes" model="ir.actions.act_window"> <!--vista en el menú-->
+        <field name="name">Docentes</field>
+        <field name="res_model">docentes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+    <menuitem id="sac_docentes" parent="" action="SACUV.action_view_docentes"/>
+
+
+    
+    <record id="action_view_materias" model="ir.actions.act_window"> <!--vista en el menú-->
+        <field name="name">Materias</field>
+        <field name="res_model">materias</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+    <menuitem id="sac_materias" parent="" action="SACUV.action_view_materias"/>
+
+      <record id="action_view_matricula" model="ir.actions.act_window"> <!--vista en el menú-->
+        <field name="name">Matricula</field>
+        <field name="res_model">matricula</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+    <menuitem id="sac_matricula" parent="" action="SACUV.action_view_matricula"/>
+
+ 
+</odoo>

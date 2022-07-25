@@ -1,0 +1,60 @@
+<!-- ACCESO A LAS TABLAS -->
+
+<odoo>
+    <!-- acceso a los estudiantes -->
+  <record id="model_acces_estudiantes" model="ir.model.access">
+    <field name="name">model.access.estudiantes</field>
+    <field name="model_id" ref="SACUV.model_estudiantes"/> 
+    <field name="group_id" ref="base.group_system"/> 
+    <field name="perm_read" eval="1"/>
+    <field name="perm_write" eval="1"/>
+    <field name="perm_create" eval="1"/>
+    <field name="perm_unlink" eval="1"/>
+  </record>
+
+      <!-- acceso a las facultades -->
+  <record id="model_acces_facultades" model="ir.model.access">
+    <field name="name">model.access.facultades</field>
+    <field name="model_id" ref="SACUV.model_facultades"/> 
+    <field name="group_id" ref="base.group_system"/> 
+    <field name="perm_read" eval="1"/>
+    <field name="perm_write" eval="1"/>
+    <field name="perm_create" eval="1"/>
+    <field name="perm_unlink" eval="1"/>
+  </record>
+
+      <!-- acceso a los docentes  -->
+      <record id="model_acces_model_docentes" model="ir.model.access">
+        <field name="name">model.access.model.docentes</field>
+        <field name="model_id" ref="SACUV.model_docentes"/> 
+        <field name="group_id" ref="base.group_system"/> 
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <!-- acceso a los materias  -->
+      <record id="model_acces_model_materias" model="ir.model.access">
+        <field name="name">model.access.model.materias</field>
+        <field name="model_id" ref="SACUV.model_materias"/> 
+        <field name="group_id" ref="base.group_system"/> 
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+      </record>
+
+           <!-- acceso a la matricula  -->
+      <record id="model_acces_model_matricula" model="ir.model.access">
+        <field name="name">model.access.model.matricula</field>
+        <field name="model_id" ref="SACUV.model_matricula"/> 
+        <field name="group_id" ref="base.group_system"/> 
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+      </record>
+
+
+</odoo>
