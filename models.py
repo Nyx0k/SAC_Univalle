@@ -116,4 +116,18 @@ class matricula(models.Model):
     cedula = fields.Char(related='current_user.x_cedula')
 
 
+#Semestre a matricular (complemento de matrícula)
+class mastriculasemestre(models.Model):
+    _name = "matriculasemestre"
+    _description = "matricula por semestre"
 
+    nom_matricula = fields.Char("Matrícula semestre")
+    periodo_ini = fields.Date("Inicio periodo")
+    periodo_fin = fields.Date("Fin periodo")
+
+    def name_get(self): 
+        result = []
+        for rec in self:
+            name = rec.nom_matricula
+            result.append((rec.id, name))
+        return result

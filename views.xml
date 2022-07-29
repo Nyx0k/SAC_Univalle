@@ -57,11 +57,9 @@
                 <field name="docentes"/>
                 <field name="horario"/>                
                 <field name="mat_facultad"/>
-                
                 <field name="nota1"/>
                 <field name="nota2"/>
                 <field name="nota3"/>
-
             </tree>  
         </field>
     </record>
@@ -74,8 +72,21 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="nom_matricula"/>  
-                <field name="cedula" />  
+                <field name="cedula"/>  
                 <field name="current_user" invisible="1"/>  
+            </tree>  
+        </field>
+    </record>
+
+    <!-- matricula semestre -->
+    <record id="view_tree_matricula_semestre" model="ir.ui.view"> 
+        <field name="name">view.tree.matricula.semestre</field>
+        <field name="model">matriculasemestre</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nom_matricula"/>  
+                <field name="periodo_ini" />  
+                <field name="periodo_fin"/>  
             </tree>  
         </field>
     </record>
@@ -111,12 +122,33 @@
                         <field name="nom_matricula"/>
                         <field name="matricula_materia"/>        
                         <field name="cedula"/>  
-                        <field name="current_user" readonly="1"/> <!--este si-->
+                        <field name="current_user" readonly="1"/>
                     </group>              
                 </sheet>
             </form>
         </field>
     </record>
+
+    <!-- matricula semestre-->
+
+ <record model="ir.ui.view" id="view_form_matricula">
+        <field name="name">view.form.matricula</field>
+        <field name="model">matriculasemestre</field>
+        <field name="arch" type="xml">
+            <form string="Matricula">
+                <sheet>               
+                <h1>Módulo de Matricula por semestre</h1>
+                    <group>
+                        <h2>Periodos de matrícula</h2>
+                        <field name="nom_matricula"/>
+                        <field name="periodo_ini"/>        
+                        <field name="periodo_fin"/>  
+                    </group>              
+                </sheet>
+            </form>
+        </field>
+    </record>
+
 
  <record model="ir.ui.view" id="view_form_materias">
         <field name="name">view.form.materias</field>
@@ -209,6 +241,14 @@
    
     <menuitem id="sac_matricula" parent="" action="SACUV.action_view_matricula"/>
 
+
+    <record id="action_view_matricula_semestre" model="ir.actions.act_window"> <!--vista en el menú-->
+        <field name="name">Matricula Semestre</field>
+        <field name="res_model">matriculasemestre</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+    <menuitem id="sac_matricula_materia" parent="" action="SACUV.action_view_matricula_semestre"/>
 
 
     <!-- REGLAS DE ACCESO -->
