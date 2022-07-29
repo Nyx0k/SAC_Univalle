@@ -4,5 +4,6 @@
     "data": [
         "views.xml",
         "security.xml"
-    ]
+    ],
+    "depends":["base"]
 }

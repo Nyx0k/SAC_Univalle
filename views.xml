@@ -73,12 +73,29 @@
         <field name="model">matricula</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="nom_matricula"/>       
+                <field name="nom_matricula"/>  
+                <field name="cedula" />  
+                <field name="current_user" invisible="1"/>  
             </tree>  
         </field>
     </record>
 
     <!-- VISTAS DE FORMULARIO -->
+
+    <!-- usuarios del sistema (res.users)-->
+    <record model="ir.ui.view" id="view_form_users">
+        <field name="name">view.form.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[(@name='login')]" position="after">
+                <group>
+                    <field name="x_cedula"/>
+                </group>
+            </xpath>
+        </field>
+    </record> 
+
 
     <!-- matricula -->
 
@@ -92,8 +109,9 @@
                     <group>
                         <h2>Materias</h2>
                         <field name="nom_matricula"/>
-                        <field name="matricula_materia"/>       
-                        <field name="estudiantes"/>                                                
+                        <field name="matricula_materia"/>        
+                        <field name="cedula"/>  
+                        <field name="current_user" readonly="1"/> <!--este si-->
                     </group>              
                 </sheet>
             </form>
@@ -190,6 +208,23 @@
     </record>
    
     <menuitem id="sac_matricula" parent="" action="SACUV.action_view_matricula"/>
+
+
+
+    <!-- REGLAS DE ACCESO -->
+    
+
+    <!-- matricula -->
+    <record id="rule_matricula" model="ir.rule">
+        <field name="name">Filtro de matr</field>
+        <field name="model_id" ref="SACUV.model_matricula"/>
+        <field name="domain_force">[('cedula', '=', user.x_cedula)]</field>
+        <!-- <field name="groups" eval="[(4, ref('group_caja_cajero')),(4, ref('group_caja_cobranzas'))]"/> -->
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>   
+    </record>
 
  
 </odoo>

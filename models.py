@@ -112,4 +112,8 @@ class matricula(models.Model):
     #Datos básicos
     nom_matricula = fields.Selection(selection=[("I semestre 2022", "I semestre 2022"), ("II semestre 2022", "II semestre 2022")], string="Matrícula semestre")
     matricula_materia = fields.Many2many("materias",required = True)
-    estudiantes = fields.Many2one ("res.users", "Estudiante")
+    current_user = fields.Many2one('res.users','Estudiante', default=lambda self: self.env.user)
+    cedula = fields.Char(related='current_user.x_cedula')
+
+
+
