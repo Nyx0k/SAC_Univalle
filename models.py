@@ -110,10 +110,9 @@ class matricula(models.Model):
     _description = "almacena datos de las matriculas de estudiantes de la universidad del valle"
  
     #Datos básicos
-    nom_matricula = fields.Selection(selection=[("I semestre 2022", "I semestre 2022"), ("II semestre 2022", "II semestre 2022")], string="Matrícula semestre")
+    nom_matricula = fields.Many2one('matriculasemestre','Matricula')
     matricula_materia = fields.Many2many("materias",required = True)
     current_user = fields.Many2one('res.users','Estudiante', default=lambda self: self.env.user)
-    cedula = fields.Char(related='current_user.x_cedula')
 
 
 #Semestre a matricular (complemento de matrícula)

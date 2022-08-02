@@ -72,7 +72,6 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="nom_matricula"/>  
-                <field name="cedula"/>  
                 <field name="current_user" invisible="1"/>  
             </tree>  
         </field>
@@ -94,7 +93,7 @@
     <!-- VISTAS DE FORMULARIO -->
 
     <!-- usuarios del sistema (res.users)-->
-    <record model="ir.ui.view" id="view_form_users">
+<!--     <record model="ir.ui.view" id="view_form_users">
         <field name="name">view.form.users</field>
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="model">res.users</field>
@@ -105,7 +104,7 @@
                 </group>
             </xpath>
         </field>
-    </record> 
+    </record>  -->
 
 
     <!-- matricula -->
@@ -121,7 +120,6 @@
                         <h2>Materias</h2>
                         <field name="nom_matricula"/>
                         <field name="matricula_materia"/>        
-                        <field name="cedula"/>  
                         <field name="current_user" readonly="1"/>
                     </group>              
                 </sheet>
@@ -258,7 +256,7 @@
     <record id="rule_matricula" model="ir.rule">
         <field name="name">Filtro de matr</field>
         <field name="model_id" ref="SACUV.model_matricula"/>
-        <field name="domain_force">[('cedula', '=', user.x_cedula)]</field>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
         <!-- <field name="groups" eval="[(4, ref('group_caja_cajero')),(4, ref('group_caja_cobranzas'))]"/> -->
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
