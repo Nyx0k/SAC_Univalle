@@ -29,6 +29,8 @@
         </field>
     </record>
 
+    
+
 <!-- docentes-->
     <record model="ir.ui.view" id="view_form_docentes">
         <field name="name">view.form.docentes</field>
